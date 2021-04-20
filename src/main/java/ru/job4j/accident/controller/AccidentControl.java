@@ -18,7 +18,8 @@ public class AccidentControl {
     }
 
     @GetMapping("/create")
-    public String create() {
+    public String create(Model model) {
+        model.addAttribute("types", accidents.getTypes());
         return "accident/create";
     }
 
