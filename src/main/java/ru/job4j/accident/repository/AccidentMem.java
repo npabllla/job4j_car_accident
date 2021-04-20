@@ -13,9 +13,6 @@ public class AccidentMem {
 
     private Map<Integer, Accident> accidents = new HashMap<>();
 
-    public AccidentMem() {
-        init();
-    }
 
     public List<Accident> getAccidents() {
         List<Accident> result = new ArrayList<>();
@@ -25,9 +22,7 @@ public class AccidentMem {
         return result;
     }
 
-    private void init() {
-        accidents.put(0, new Accident("Accident1", "Some accident 1", "Some Street 4"));
-        accidents.put(1, new Accident("Accident2", "Some accident 2", "Some Street 8"));
-        accidents.put(2, new Accident("Accident3", "Some accident 3", "Some Street 16"));
+    public void create(Accident accident) {
+        accidents.put(accident.getId(), accident);
     }
 }
