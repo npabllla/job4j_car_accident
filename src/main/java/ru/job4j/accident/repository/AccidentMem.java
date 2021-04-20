@@ -33,12 +33,8 @@ public class AccidentMem {
         return accidents.values();
     }
 
-    public List<AccidentType> getTypes() {
-        List<AccidentType> result = new ArrayList<>();
-        for (Integer key : types.keySet()) {
-            result.add(types.get(key));
-        }
-        return result;
+    public Collection<AccidentType> getTypes() {
+        return types.values();
     }
 
     public Set<Rule> getRules() {
@@ -49,7 +45,7 @@ public class AccidentMem {
         Set<Rule> rules = setRules(ids);
         if (accident.getId() != 0) {
             accident.setRules(rules);
-            accident.setType(accidents.get(accident.getId()).getType());
+            accident.setType(types.get(accident.getType().getId()));
             accidents.put(accident.getId(), accident);
         } else {
             accident.setRules(rules);
