@@ -7,6 +7,7 @@ import ru.job4j.accident.model.Rule;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
 public class AccidentMem {
@@ -16,7 +17,7 @@ public class AccidentMem {
 
     private Set<Rule> rules = new HashSet<>();
 
-    private int count = 1;
+    private AtomicInteger count = new AtomicInteger(1);
 
     public AccidentMem() {
         types.put(0, AccidentType.of(0, "Две машины"));
@@ -28,8 +29,8 @@ public class AccidentMem {
         rules.add(Rule.of(2, "Статья 3"));
     }
 
-    public List<Accident> getAccidents() {
-        return (List<Accident>) accidents.values();
+    public Collection<Accident> getAccidents() {
+        return accidents.values();
     }
 
     public List<AccidentType> getTypes() {
@@ -52,10 +53,10 @@ public class AccidentMem {
             accidents.put(accident.getId(), accident);
         } else {
             accident.setRules(rules);
-            accident.setId(count);
+            accident.setId(count.intValue());
             accident.setType(types.get(accident.getType().getId()));
-            accidents.put(count, accident);
-            count++;
+            accidents.put(count.intValue(), accident);
+            count.incrementAndGet();
         }
     }
 
