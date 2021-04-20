@@ -1,17 +1,16 @@
-package ru.job4j.accident.control;
+package ru.job4j.accident.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import java.util.List;
+import ru.job4j.accident.repository.AccidentMem;
 
 @Controller
 public class IndexControl {
     @GetMapping("/")
     public String index(Model model) {
-        List<String> strings = List.of("Один", "Два", "Три");
-        model.addAttribute("numbers", strings);
+        AccidentMem accidents = new AccidentMem();
+        model.addAttribute("accidents", accidents.getAccidents());
         return "index";
     }
 }

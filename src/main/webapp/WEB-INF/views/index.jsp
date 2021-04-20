@@ -20,14 +20,22 @@
     <table class="table">
         <thead>
         <tr>
-            <th scope="col">Число</th>
+            <th scope="col">Название</th>
+            <th scope="col">Описание</th>
+            <th scope="col">Адрес</th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${numbers}" var="number">
+        <c:forEach items="${accidents}" var="accident">
             <tr>
                 <td>
-                    <c:out value="${number}"/>
+                    <c:out value="${accident.name}"/>
+                </td>
+                <td>
+                    <c:out value="${accident.text}"/>
+                </td>
+                <td>
+                    <c:out value="${accident.address}"/>
                 </td>
             </tr>
         </c:forEach>
