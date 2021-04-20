@@ -13,9 +13,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class AccidentMem {
     private Map<Integer, Accident> accidents = new ConcurrentHashMap<>();
 
-    private Map<Integer, AccidentType> types = new HashMap<>();
+    private Map<Integer, AccidentType> types = new ConcurrentHashMap<>();
 
-    private Set<Rule> rules = new HashSet<>();
+    private Map<Integer, Rule> rules = new ConcurrentHashMap<>();
 
     private AtomicInteger count = new AtomicInteger(1);
 
@@ -24,9 +24,9 @@ public class AccidentMem {
         types.put(1, AccidentType.of(1, "Машина и человек"));
         types.put(2, AccidentType.of(2, "Машина и велосипед"));
 
-        rules.add(Rule.of(0, "Статья 1"));
-        rules.add(Rule.of(1, "Статья 2"));
-        rules.add(Rule.of(2, "Статья 3"));
+        rules.put(0, Rule.of(0, "Статья 1"));
+        rules.put(1, Rule.of(1, "Статья 2"));
+        rules.put(2, Rule.of(2, "Статья 3"));
     }
 
     public Collection<Accident> getAccidents() {
@@ -37,17 +37,20 @@ public class AccidentMem {
         return types.values();
     }
 
-    public Set<Rule> getRules() {
-        return rules;
+    public Collection<Rule> getRules() {
+        return rules.values();
     }
 
     public void create(Accident accident, String[] ids) {
-        Set<Rule> rules = setRules(ids);
         if (accident.getId() != 0) {
-            accident.setRules(rules);
-            accident.setType(types.get(accident.getType().getId()));
+            accident.setRules(accidents.get(accident.getId()).getRules());
+            accident.setType(accidents.get(accident.getId()).getType());
             accidents.put(accident.getId(), accident);
         } else {
+            Set<Rule> rules = new HashSet<>();
+            for (String id : ids) {
+                rules.add(this.rules.get(Integer.parseInt(id)));
+            }
             accident.setRules(rules);
             accident.setId(count.intValue());
             accident.setType(types.get(accident.getType().getId()));
@@ -63,17 +66,5 @@ public class AccidentMem {
             }
         }
         return Optional.empty();
-    }
-
-    private Set<Rule> setRules(String[] ids) {
-        Set<Rule> rules = new HashSet<>();
-        for (Rule rule : this.rules) {
-            for (String id : ids) {
-                if (rule.getId() == Integer.parseInt(id)) {
-                    rules.add(rule);
-                }
-            }
-        }
-        return rules;
     }
 }
