@@ -6,10 +6,11 @@ import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
 public class AccidentMem {
-    private Map<Integer, Accident> accidents = new HashMap<>();
+    private Map<Integer, Accident> accidents = new ConcurrentHashMap<>();
 
     private Map<Integer, AccidentType> types = new HashMap<>();
 
@@ -28,11 +29,7 @@ public class AccidentMem {
     }
 
     public List<Accident> getAccidents() {
-        List<Accident> result = new ArrayList<>();
-        for (Integer key : accidents.keySet()) {
-            result.add(accidents.get(key));
-        }
-        return result;
+        return (List<Accident>) accidents.values();
     }
 
     public List<AccidentType> getTypes() {
