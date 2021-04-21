@@ -16,16 +16,14 @@
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
 
-    <title>Accident</title>
+    <title>Нарушения</title>
 </head>
 <body>
 <div class="container pt-3">
     <div class="row">
-        <ul class="nav-item">
-            <li class="nav-link">
-                <a class="nav-link" href="<c:url value='/create'/>">Добавить инцидент</a>
-            </li>
-        </ul>
+        <form action="<c:url value='/create'/>">
+            <button class="btn btn-outline-secondary btn-lg">Добавить инцидент</button>
+        </form>
     </div>
     <div class="row">
         <div class="card" style="width: 100%">
@@ -51,7 +49,7 @@
                                 <c:out value="${accident.name}"/>
                             </td>
                             <td>
-                                <c:out value="${accident.text}"/>
+                                <c:out value="${accident.description}"/>
                             </td>
                             <td>
                                 <c:out value="${accident.address}"/>

@@ -1,31 +1,44 @@
 package ru.job4j.accident.model;
 
+import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+@Entity
+@Table(name = "accident")
 public class Accident {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String name;
 
-    private String text;
+    private String description;
 
     private String address;
 
+    @ManyToOne
+    @JoinColumn(name = "type_id")
     private AccidentType type;
 
-    private Set<Rule> rules;
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+    private Set<Rule> rules = new HashSet<>();
 
     public Accident() {
 
     }
 
-    public Accident(String name, String text, String address, AccidentType type, Set<Rule> rules) {
+    public Accident(String name, String description, String address, AccidentType type, Set<Rule> rules) {
         this.name = name;
-        this.text = text;
+        this.description = description;
         this.address = address;
         this.type = type;
         this.rules = rules;
+    }
+
+    public void addRule(Rule rule) {
+        this.rules.add(rule);
     }
 
     public int getId() {
@@ -44,12 +57,12 @@ public class Accident {
         this.name = name;
     }
 
-    public String getText() {
-        return text;
+    public String getDescription() {
+        return description;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setDescription(String text) {
+        this.description = text;
     }
 
     public String getAddress() {
@@ -85,19 +98,19 @@ public class Accident {
             return false;
         }
         Accident accident = (Accident) o;
-        return id == accident.id && Objects.equals(name, accident.name) && Objects.equals(text, accident.text) && Objects.equals(address, accident.address);
+        return id == accident.id && Objects.equals(name, accident.name) && Objects.equals(description, accident.description) && Objects.equals(address, accident.address);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, text, address);
+        return Objects.hash(id, name, description, address);
     }
 
     @Override
     public String toString() {
         return "Accident{"
                 + "id=" + id + ", name='" + name + '\''
-                + ", text='" + text + '\''
+                + ", text='" + description + '\''
                 + ", address='" + address + '\''
                 + '}';
     }
