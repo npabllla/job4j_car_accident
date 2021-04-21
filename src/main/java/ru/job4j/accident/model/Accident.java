@@ -16,6 +16,10 @@ public class Accident {
 
     private Set<Rule> rules;
 
+    public Accident() {
+
+    }
+
     public Accident(String name, String text, String address, AccidentType type, Set<Rule> rules) {
         this.name = name;
         this.text = text;
