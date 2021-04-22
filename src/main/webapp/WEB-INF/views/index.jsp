@@ -17,14 +17,21 @@
             crossorigin="anonymous"></script>
 
     <title>Нарушения</title>
+    <style>
+        h6 {
+            display: inline;
+            float: right;
+        }
+    </style>
 </head>
 <body>
 <div class="container pt-3">
-    <div class="row">
-        <form action="<c:url value='/create'/>">
-            <button class="btn btn-outline-secondary btn-lg">Добавить инцидент</button>
-        </form>
-    </div>
+    <form action="<c:url value='/create'/>">
+        <button class="btn btn-outline-secondary btn-lg">Добавить инцидент</button>
+        <h6>
+            <a>Текущий пользователь : ${user.username}</a>
+        </h6>
+    </form>
     <div class="row">
         <div class="card" style="width: 100%">
             <div class="card-header">
