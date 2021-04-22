@@ -18,18 +18,15 @@
 
     <title>Нарушения</title>
     <style>
-        h6 {
-            display: inline;
-            float: right;
-        }
     </style>
 </head>
 <body>
 <div class="container pt-3">
     <form action="<c:url value='/create'/>">
         <button class="btn btn-outline-secondary btn-lg">Добавить инцидент</button>
-        <h6>
+        <h6 style="float: right">
             <a>Текущий пользователь : ${user.username}</a>
+            <a class="link" href="http://localhost:8080/accident/login">| Сменить пользователя</a>
         </h6>
     </form>
     <div class="row">

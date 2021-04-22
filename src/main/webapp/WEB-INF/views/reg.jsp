@@ -16,14 +16,15 @@
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
 
-    <title>Вход</title>
+    <title>Регистрация</title>
 
     <style>
         .card {
             margin: 0 auto;
             width: 400px;
-            height: 350px
+            height: 200px
         }
+
         input {
             width: 250px;
         }
@@ -34,30 +35,28 @@
     <div class="row">
         <div class="card">
             <div class="card-header">
-                <h4>Вход</h4>
+                <h4>Регистрация</h4>
             </div>
             <div class="card-body">
-                <c:if test="${not empty errorMessage}">
-                    <div style="color:red; font-weight: bold; margin: 30px 0px;">
-                            Неверный логин или пароль
-                    </div>
-                </c:if>
-                <form name='login' action="<c:url value='/login'/>" method='POST'>
+                <form name='login' action="<c:url value='/reg'/>" method='POST'>
                     <table>
                         <tr>
                             <td>Имя:</td>
-                            <td><input type='text' name='username' placeholder="Введите ваше имя"></td>
+                            <td><input type='text' name='username'
+                                       placeholder="Введите ваше имя"></td>
                         </tr>
                         <tr>
                             <td>Пароль:</td>
-                            <td><input type='password' name='password' placeholder="Введите ваш пароль"/></td>
+                            <td><input type='password' name='password'
+                                       placeholder="Введите ваш пароль"/></td>
                         </tr>
                     </table>
-                    <button name="submit" type="submit" class="btn btn-primary" style="margin-top: 15px">Вход</button>
-                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                </form>
-                <form action="<c:url value='/reg'/>">
-                    <button class="btn btn-primary">Регистариция</button>
+                    <div class="card-form" style="margin-top: 10px">
+                        <button name="submit" type="submit" class="btn btn-primary floated"
+                                onclick="return val()">
+                            Зарегистрироваться
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>

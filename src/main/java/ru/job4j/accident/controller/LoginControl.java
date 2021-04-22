@@ -1,4 +1,4 @@
-package ru.job4j.accident.control;
+package ru.job4j.accident.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
