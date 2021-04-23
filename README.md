@@ -19,6 +19,8 @@
 ![ScreenShot](images/LoginAlert.png)
 ### Страница регистрации
 ![ScreenShot](images/Reg.png)
+### Необходимо ввести корректные данные
+![ScreenShot](images/RegAlert.png)
 ### Главная страница после логина
 ![ScreenShot](images/MainPage.png)
 ### Добавим нарушение

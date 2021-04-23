@@ -17,8 +17,6 @@
             crossorigin="anonymous"></script>
 
     <title>Нарушения</title>
-    <style>
-    </style>
 </head>
 <body>
 <div class="container pt-3">
@@ -26,7 +24,7 @@
         <button class="btn btn-outline-secondary btn-lg">Добавить инцидент</button>
         <h6 style="float: right">
             <a>Текущий пользователь : ${user.username}</a>
-            <a class="link" href="http://localhost:8080/accident/login">| Сменить пользователя</a>
+            <a class="link" href="http://localhost:8080/accident/logout">| Сменить пользователя</a>
         </h6>
     </form>
     <div class="row">

@@ -22,7 +22,7 @@
         .card {
             margin: 0 auto;
             width: 400px;
-            height: 200px
+            height: 230px
         }
 
         input {
@@ -51,12 +51,17 @@
                                        placeholder="Введите ваш пароль"/></td>
                         </tr>
                     </table>
-                    <div class="card-form" style="margin-top: 10px">
-                        <button name="submit" type="submit" class="btn btn-primary floated"
+                    <form class="reg">
+                        <button class="btn btn-primary" style="margin-top: 15px"
                                 onclick="return val()">
                             Зарегистрироваться
                         </button>
-                    </div>
+                        <label class="wrongUser" style="color: red">
+                            <c:if test="${not empty error}">
+                                ${error}
+                            </c:if>
+                        </label>
+                    </form>
                 </form>
             </div>
         </div>

@@ -22,8 +22,9 @@
         .card {
             margin: 0 auto;
             width: 400px;
-            height: 350px
+            height: 275px
         }
+
         input {
             width: 250px;
         }
@@ -37,11 +38,6 @@
                 <h4>Вход</h4>
             </div>
             <div class="card-body">
-                <c:if test="${not empty errorMessage}">
-                    <div style="color:red; font-weight: bold; margin: 30px 0px;">
-                            Неверный логин или пароль
-                    </div>
-                </c:if>
                 <form name='login' action="<c:url value='/login'/>" method='POST'>
                     <table>
                         <tr>
@@ -54,10 +50,15 @@
                         </tr>
                     </table>
                     <button name="submit" type="submit" class="btn btn-primary" style="margin-top: 15px">Вход</button>
-                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 </form>
                 <form action="<c:url value='/reg'/>">
                     <button class="btn btn-primary">Регистариция</button>
+                    <label id="wrongUser" style="color: red">
+                        <c:if test="${not empty errorMessage}">
+                            ${errorMessage}
+                        </c:if>
+                    </label>
                 </form>
             </div>
         </div>

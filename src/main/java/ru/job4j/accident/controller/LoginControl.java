@@ -20,10 +20,10 @@ public class LoginControl {
                             Model model) {
         String errorMessage = null;
         if (error != null) {
-            errorMessage = "Username or Password is incorrect !!";
+            errorMessage = "Неверный логин или пароль";
         }
         if (logout != null) {
-            errorMessage = "You have been successfully logged out !!";
+            errorMessage = "Вы уже вышли из аккаунта";
         }
         model.addAttribute("errorMessage", errorMessage);
         return "login";
