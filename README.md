@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.org/npabllla/job4j_car_accident.svg?branch=main)](https://travis-ci.org/npabllla/job4j_car_accident)
 # job4j_car_accident
 ## Проект "Автонарушители"
+### Веб-приложение для добавления и редактирования автонарушений
 ## Используемые технологии
 * Spring (Core, MVC, Data, Security)
 * Jsp, Html
